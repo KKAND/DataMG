@@ -1,0 +1,14 @@
+/node_modules
+/public/hot
+/public/storage
+/public/phpMyAdmin-4.8.2-all-languages
+/public/upload
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.env
