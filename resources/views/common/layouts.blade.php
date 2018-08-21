@@ -21,8 +21,7 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h2>BlueBuck</h2>
-        <p> - 信息管理系统</p>
+        <p>Information Management</p>
     </div>
 </div>
 @show
@@ -55,11 +54,11 @@
 
 <!-- 尾部 -->
 @section('footer')
-<div class="jumbotron" style="margin:0;">
-    <div class="container">
-        <span>  @2016 eie</span>
-    </div>
+<nav class="navbar navbar-default navbar-fixed-bottom ">
+    <div class="text-right">
+        <p>  @2016 eie</p>
 </div>
+</nav> 
 @show
 <!--导入在线样式文件-->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

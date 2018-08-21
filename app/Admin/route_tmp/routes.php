@@ -11,7 +11,5 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
-	$router->resource('tdata',TdataController::class);
-	$router->resource('mydata',mydataController::class);
 
 });
