@@ -13,5 +13,8 @@ Route::group([
     $router->get('/', 'HomeController@index');
 	$router->resource('tdata',TdataController::class);
 	$router->resource('mydata',mydataController::class);
+	$router->resource('information',InformationController::class);
+	$router->resource('class',ClassController::class);
 
+	$router->get('/overview','OverviewController@index');
 });

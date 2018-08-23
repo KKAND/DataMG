@@ -253,6 +253,5 @@ return [
     |
     */
     'extensions' => [
-
     ],
 ];
