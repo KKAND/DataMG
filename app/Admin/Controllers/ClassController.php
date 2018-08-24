@@ -23,7 +23,6 @@ class ClassController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-
             $content->header('header');
             $content->description('description');
 
@@ -73,6 +72,11 @@ class ClassController extends Controller
     {
         return Admin::grid(ClassModel::class, function (Grid $grid) {
 
+			$currentusrid=Admin::user()->id;
+			#$grid->model()->where('id','=',$currentusrid);
+			$currentusrdata=ClassModel::where('id',$currentusrid)->select('class')->get();
+			#dd($currentusrdata[0]->class);
+			$grid->model()->where('class','=',$currentusrdata[0]->class);
             $grid->id('ID')->sortable();
 			
 			$grid->name('Name');
