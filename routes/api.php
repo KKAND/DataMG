@@ -17,3 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/user/college','ApiCollegeController@aa');
 Route::get('/user/voc','ApiCollegeController@voc');
+Route::get('/user/ethnic','ApiCollegeController@ethnic');
+Route::get('/user/province','ApiCollegeController@province');
+Route::get('/user/city','ApiCollegeController@city');
+Route::get('/user/area','ApiCollegeController@area');

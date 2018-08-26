@@ -13,7 +13,7 @@ use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\DB;
 
-class InformationController extends Controller
+class GeneralmanagerController extends Controller
 {
     use ModelForm;
 
@@ -124,7 +124,7 @@ class InformationController extends Controller
     {
         return Admin::grid(InformationModel::class, function (Grid $grid) {
 			#修改数据源，获取当前登录id数据
-			$grid->model()->where('id','=',Admin::user()->id);
+			//$grid->model()->where('id','=',Admin::user()->id);
 
 			$grid->name('姓名');
 			$grid->gender('性别');

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\InformationModel;
+use App\Models\ClassiModel;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -12,8 +12,7 @@ use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Show;
 use Illuminate\Support\Facades\DB;
-
-class InformationController extends Controller
+class ClassiController extends Controller
 {
     use ModelForm;
 
@@ -74,19 +73,11 @@ class InformationController extends Controller
      */
     public function show($id)
 	{
-
-		/*	$iddata=DB::table('usersdata')->where('id',$id)->get();
-		return Admin::content(function (Content $content){
-			$over=view('information',compact('$iddata'))->render();;
-		    $content->body($over);
-		});*/
-		
-
         return Admin::content(function (Content $content) use ($id) {
 
             $content->header('Detail');
             $content->description('Information');
-			$content->body(Admin::show(InformationModel::findOrFail($id), function (Show $show) {
+			$content->body(Admin::show(ClassiModel::findOrFail($id), function (Show $show) {
 				$show->name('姓名');
 				$show->gender('性别');
 				$show->nation('民族');
@@ -98,10 +89,6 @@ class InformationController extends Controller
 				$show->grade('年级');
 				$show->phone('电话');
 				$show->qq('QQ');
-				$show->college('学院')->display(function ($college){
-					$dcollege=DB::table('datacollege')->where('id',$college)->get();
-					return($dcollege[0]->text);
-				} );
 			//	$show->province('省份');
 			//	$show->city('市');
 			//	$show->area('地区');
@@ -116,16 +103,18 @@ class InformationController extends Controller
 		});
     }
     /**
+    /**
      * Make a grid builder.
      *
      * @return Grid
      */
     protected function grid()
     {
-        return Admin::grid(InformationModel::class, function (Grid $grid) {
-			#修改数据源，获取当前登录id数据
-			$grid->model()->where('id','=',Admin::user()->id);
+        return Admin::grid(ClassiModel::class, function (Grid $grid) {
 
+			$currentusrid=Admin::user()->id;
+			$currentusrdata=DB::table('usersdata')->where('id',$currentusrid)->select('class')->get();
+			$grid->model()->where('class','=',$currentusrdata[0]->class);
 			$grid->name('姓名');
 			$grid->gender('性别');
 			$grid->stuid('学号');
@@ -139,8 +128,6 @@ class InformationController extends Controller
 			$grid->partybranch('支部');
 			$grid->level('党员属性');
 			$grid->disableExport();
-			$grid->disableCreateButton();
-			
         });
     }
 
@@ -151,7 +138,7 @@ class InformationController extends Controller
      */
     protected function form()
     {
-        return Admin::form(InformationModel::class, function (Form $form) {
+        return Admin::form(ClassiModel::class, function (Form $form) {
 		    $form->row(function ($row) use ($form)
 		    {
 			    //$row->display('id','ID');
